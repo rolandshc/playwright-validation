@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Validation Test Page</title>
+  <style>
+    /* Removed the display: none; style for #about */
+  </style>
+</head>
+<body>
+  <h1>Playwright Validation Test Page</h1>
+
+  <!-- Basic Login Form -->
+  <form id="login-form">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" /><br /><br />
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" /><br /><br />
+
+    <button type="submit">Login</button>
+  </form>
+
+  <!-- Popup Interaction -->
+  <button id="confirmBtn">Confirm Action</button>
+  <button id="promptBtn">Prompt Input</button>
+
+  <!-- Keyboard and Mouse -->
+  <input id="keyboard-input" placeholder="Type something..." />
+  <div id="hover-me" style="margin-top:20px; width:200px; height:50px; background:#eee; text-align:center; line-height:50px;">
+    Hover over me
+  </div>
+
+  <!-- Delayed Content -->
+  <div id="delayed-content"></div>
+
+  <!-- Hidden Element -->
+  <div id="hidden-msg" style="display: none;">This message is hidden</div>
+
+  <!-- Checkbox, Select, Radio -->
+  <input type="checkbox" id="agree" /> <label for="agree">Agree to terms</label><br />
+  <input type="radio" name="role" value="admin" /> Admin
+  <input type="radio" name="role" value="user" /> User<br />
+  <label for="country">Country:</label>
+  <select id="country">
+    <option value="">Select</option>
+    <option value="us">US</option>
+    <option value="ca">Canada</option>
+  </select><br /><br />
+
+  <!-- Navigation Simulation -->
+  <a href="#about" id="nav-about">About Us</a>
+  <div id="about">This is the About page.</div>
+
+  <!-- Custom Attributes -->
+  <p data-testid="greeting">Welcome, user!</p>
+
+  <script>
+    document.getElementById("login-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Login successful (simulated)");
+    });
+
+    document.getElementById("confirmBtn").addEventListener("click", function () {
+      confirm("Are you sure?");
+    });
+
+    document.getElementById("promptBtn").addEventListener("click", function () {
+      prompt("What is your name?");
+    });
+
+    document.getElementById("nav-about").addEventListener("click", function (e) {
+      e.preventDefault(); // Prevent default anchor behavior
+      const aboutSection = document.getElementById("about");
+      aboutSection.style.display = "block"; // Make the #about section visible
+    });
+
+    setTimeout(() => {
+      const msg = document.createElement("p");
+      msg.textContent = "Loaded after delay";
+      document.getElementById("delayed-content").appendChild(msg);
+    }, 2000);
+  </script>
+</body>
+</html>
