@@ -116,4 +116,30 @@ test.describe('Static Site Validation Tests', () => {
     // Visual comparison (requires Playwright's snapshot testing capabilities)
     expect(await page.screenshot()).toMatchSnapshot('__snapshots__/full-page-visual.png');
   });
+
+  test('Negative test case: Element not found', async ({ page }, testInfo) => {
+    await page.goto('/');
+
+    try {
+      // Attempt to locate a non-existent element
+      const nonExistentElement = page.locator('#non-existent-element');
+      await expect(nonExistentElement).toBeVisible({ timeout: 5000 });
+    } catch (error) {
+      // Capture a screenshot of the error state
+      const screenshotPath = `test-results/error-screenshot.png`;
+      await page.screenshot({ path: screenshotPath });
+
+      // Attach the screenshot to the HTML report
+      await testInfo.attach('Error Screenshot', {
+        path: screenshotPath,
+        contentType: 'image/png',
+      });
+
+      // Log the error trace
+      console.error('Error trace:', error);
+
+      // Re-throw the error to ensure the test fails
+      throw error;
+    }
+  });
 });

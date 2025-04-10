@@ -1,8 +1,38 @@
-
-# Playwright
+# Playwright specific
 node_modules/
 /test-results/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Screenshots and recorded videos
+**/*.png
+!**/__snapshots__/**/*.png
+!**/static-site.spec.ts-snapshots/**/*.png
+**/*.webm
+
+# IDE and Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
 .DS_Store
+
+# Environment and config files
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test coverage
+/coverage/
+
+# Build outputs
+/dist/
+/build/
