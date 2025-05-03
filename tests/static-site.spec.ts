@@ -1,4 +1,14 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, devices } from '@playwright/test';
+
+// Take a screenshot after each test case, whether it passes or fails
+test.afterEach(async ({ page }, testInfo) => {
+  const screenshotPath = `test-results/${testInfo.title.replace(/\s+/g, '_')}-${testInfo.status}.png`;
+  await page.screenshot({ path: screenshotPath });
+  await testInfo.attach('Screenshot', {
+    path: screenshotPath,
+    contentType: 'image/png',
+  });
+});
 
 test.describe('Static Site Validation Tests', () => {
   test('Login form submission', async ({ page }) => {
