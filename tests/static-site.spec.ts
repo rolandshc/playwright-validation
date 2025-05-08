@@ -16,13 +16,14 @@ test.describe('Static Site Validation Tests', () => {
 
     await page.fill('#username', 'testuser');
     await page.fill('#password', 'password123');
-    await page.click('#login-form button');
 
     // Expect an alert to appear with the correct message
     page.once('dialog', async (dialog) => {
       expect(dialog.message()).toBe('Login successful (simulated)');
       await dialog.accept();
     });
+
+    await page.click('#login-form button');
   });
 
   test('Confirm and prompt buttons', async ({ page }) => {
