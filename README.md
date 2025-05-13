@@ -51,6 +51,12 @@ npm start
 ```
 This will start a local server at http://localhost:3000
 
+### Suppress deprecation warning for cleaner results before running test
+Run below in the shell:
+```
+export NODE_NO_WARNINGS=1
+```
+
 ### Running Tests
 
 Run all tests:
