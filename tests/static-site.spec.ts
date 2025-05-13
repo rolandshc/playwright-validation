@@ -133,6 +133,7 @@ test.describe('Static Site Validation Tests', () => {
 
   test('Negative test case', async ({ page }, testInfo) => {
     await page.goto('/');
-    test.fail(true, 'This is a negative validation test that should fail by design');
+    test.fail(true, 'Expected to fail');
+    expect(false).toBe(true);
   });
 });
