@@ -2,15 +2,12 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: mcr.microsoft.com/playwright:v1.51.0-jammy
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
     steps:
       - checkout
       - run: npm install
       - run: npx playwright install --with-deps
-      - run: npx playwright test
-
-workflows:
-  version: 2
-  validate:
-    jobs:
-      - test
+      - run: npx playwright test --reporter=html
+      - store_artifacts:
+          path: playwright-report
+          destination: playwright-html-report
