@@ -20,6 +20,7 @@ test.describe('Static Site Validation Tests', () => {
     // Expect an alert to appear with the correct message
     page.once('dialog', async (dialog) => {
       expect(dialog.message()).toBe('Login successful (simulated)');
+      await page.waitForTimeout(1000); // Simulate some delay
       await dialog.accept();
     });
 
@@ -33,6 +34,7 @@ test.describe('Static Site Validation Tests', () => {
     page.once('dialog', async (dialog) => {
       expect(dialog.type()).toBe('confirm');
       expect(dialog.message()).toBe('Are you sure?');
+      await page.waitForTimeout(1000); // Simulate some delay
       await dialog.accept();
     });
     await page.click('#confirmBtn');
@@ -41,6 +43,7 @@ test.describe('Static Site Validation Tests', () => {
     page.once('dialog', async (dialog) => {
       expect(dialog.type()).toBe('prompt');
       expect(dialog.message()).toBe('What is your name?');
+      await page.waitForTimeout(1000); // Simulate some delay
       await dialog.accept('Playwright User');
     });
     await page.click('#promptBtn');
